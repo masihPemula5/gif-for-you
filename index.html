@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+    <body>
+      <div class="text">
+        <h1>I have crush on you <br> maukah kamu jadi pacarku?</h1>
+        <h1 style="display: none;">Yeeyyy sekarang kita pacaran</h1>
+        <h1 style="display: none;">kamu yakin? 😭😢</h1>
+      </div>
+    
+    
+    <div class="gif">
+      <img height="150" width="200" src="/img/nembak.gif" alt="">
+      <img style="display: none;" height="150" width="200" src="/img/diterima.gif" alt="">
+      <img style="display: none;" height="150" width="200" src="/img/ditolak.gif" alt="">
+    </div>
+    <button id="loveButton">mauu bgt</button>
+    <button id="sadButton">gak mau</button>
+    <div id="animationContainer"></div>
+    
+    <script>
+      const btn1 = document.getElementById('loveButton');
+      const btn2 = document.getElementById('sadButton');
+      const gif1 = document.querySelector('.gif img:nth-child(1)');
+      const gif2 = document.querySelector('.gif img:nth-child(2)');
+      const gif3 = document.querySelector('.gif img:nth-child(3)');
+      const h1 = document.querySelector('.text h1:nth-child(1)')
+      const h2 = document.querySelector('.text h1:nth-child(2)')
+      const h3 = document.querySelector('.text h1:nth-child(3)')
+    
+    function reset(){
+      const src = gif1.src
+      gif1.src = src
+    }
+    setInterval(reset, 2000)
+    
+    btn1.addEventListener('click', () => {
+      gif1.style.display = 'none';
+      gif3.style.display = 'none';
+      gif2.style.display = 'block';
+      h2.style.display = 'block'
+      h1.style.display = 'none'
+      h3.style.display = 'none'
+      btn1.style.display = 'none'
+      btn2.style.display = 'none'
+    });
+    
+    btn2.addEventListener('click', () => {
+      gif1.style.display = 'block';
+      gif3.style.display = 'none';
+      gif2.style.display = 'none';
+      h2.style.display = 'none'
+      h1.style.display = 'block'
+      h3.style.display = 'none'
+    
+    });
+    document.getElementById('loveButton').addEventListener('click', function() {
+        const container = document.getElementById('animationContainer');
+        for (let i = 0; i < 100; i++) {
+            createAnimation(container, 'love');
+        }
+    });
+    
+    document.getElementById('sadButton').addEventListener('click', function() {
+        const container = document.getElementById('animationContainer');
+        for (let i = 0; i < 100; i++) {
+            createAnimation(container, 'sad');
+        }
+    });
+    
+    function createAnimation(container, type) {
+        const element = document.createElement('div');
+        element.classList.add(type);
+        element.style.left = Math.random() * 100 + 'vw';
+        element.style.animationDuration = Math.random() * 2 + 3 + 's';
+        container.appendChild(element);
+    
+        setTimeout(() => {
+            element.remove();
+        }, 7000);
+    }
+    
+        const tombol = document.getElementById('sadButton');
+    
+        tombol.addEventListener('click', () => {
+          const maxX = window.innerWidth - tombol.offsetWidth;
+          const maxY = window.innerHeight - tombol.offsetHeight;
+          const newX = Math.floor(Math.random() * maxX);
+          const newY = Math.floor(Math.random() * maxY);
+    
+          tombol.style.top = `${newY}px`;
+          tombol.style.left = `${newX}px`;
+        });
+      </script>
+</body> 
+</html>
